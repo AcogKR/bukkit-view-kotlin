@@ -12,14 +12,14 @@ version = "1.0.0"
 
 repositories {
     mavenCentral()
-    spigotmc()
     mavenLocal()
+    spigotmc()
 }
 
 dependencies {
     compileOnly(spigot("1.18.1"))
     implementation(kotlin("stdlib"))
-    implementation("io.typecraft:bukkit-view-core:1.0.0")
+    implementation("io.typecraft:bukkit-view-core:${version}")
 }
 
 publishing {

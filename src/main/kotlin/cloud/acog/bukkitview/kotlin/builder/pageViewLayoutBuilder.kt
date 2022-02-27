@@ -1,5 +1,6 @@
 package cloud.acog.bukkitview.kotlin.builder
 
+import io.typecraft.bukkit.view.ChestView
 import io.typecraft.bukkit.view.ViewItem
 import io.typecraft.bukkit.view.page.PageContext
 import io.typecraft.bukkit.view.page.PageViewControl
@@ -14,7 +15,13 @@ class PageViewLayoutBuilder(
     var slots: List<Int>,
     var controls: MutableMap<Int, Function<PageContext, PageViewControl>>
 ) {
+
     fun toPageViewLayout() : PageViewLayout {
         return PageViewLayout(title, row, contents, slots, controls)
     }
+
+    fun toView() : ChestView {
+        return ChestView(title, 6, mutableMapOf())
+    }
+
 }

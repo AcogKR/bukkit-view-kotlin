@@ -21,11 +21,15 @@ fun simplePageView(title: String, row: Int, items: MutableMap<Int, ViewItem>, c:
     return ChestView(title, row, items).apply(c)
 }
 
-fun ChestView.openInventory(player: Player) {
+fun ChestView.openViewer(player: Player) {
     val holder = ViewHolder()
     holder.view = this
     val inv: Inventory = Bukkit.createInventory(holder, this.row * 9, this.title)
     holder.inventory = inv
     this.items.entries.forEach { (key, value) -> inv.setItem(key, value.item) }
     player.openInventory(inv)
+}
+
+fun PageViewLayout.openPage(player: Player, page: Int) {
+    toView(page).openViewer(player)
 }
