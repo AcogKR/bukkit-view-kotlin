@@ -2,7 +2,6 @@
 
 This is an extension of the bukkit-view-core library. [[bukkit-view]](https://github.com/typecraft-io/bukkit-view)
 
-
 ### Example Code
 
 ```kotlin
