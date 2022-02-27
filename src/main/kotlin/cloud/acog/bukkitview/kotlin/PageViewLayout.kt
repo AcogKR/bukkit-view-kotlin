@@ -6,10 +6,13 @@ import io.typecraft.bukkit.view.page.PageViewLayout
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
+import java.util.stream.Collectors
+import java.util.stream.IntStream
 
 fun pageViewLayout(title: String, row: Int, c: PageViewLayoutBuilder.() -> Unit = {}): PageViewLayout {
+    val slots = IntStream.range(0, (row - 1) * 9).boxed().collect(Collectors.toList())
     return PageViewLayoutBuilder(
-        title, row, mutableListOf(), mutableListOf(), mutableMapOf()
+        title, row, mutableListOf(), slots, mutableMapOf()
     ).apply(c).toPageViewLayout()
 }
 

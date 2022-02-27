@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack
 
 
 fun pageViewController(item: ItemStack, c: ClickEvent.() -> PageViewAction = { PageViewAction.NOTHING }): java.util.function.Function<PageContext, PageViewControl> {
-    return java.util.function.Function<PageContext, PageViewControl> { _ ->
+    return java.util.function.Function<PageContext, PageViewControl> { ctx ->
         PageViewControl(item) { e -> c(e) }
     }
 }
