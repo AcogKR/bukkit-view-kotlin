@@ -5,7 +5,6 @@ import io.typecraft.bukkit.view.ViewItem
 import io.typecraft.bukkit.view.page.PageContext
 import io.typecraft.bukkit.view.page.PageViewControl
 import io.typecraft.bukkit.view.page.PageViewLayout
-
 import java.util.function.Function
 
 class PageViewLayoutBuilder(
@@ -20,8 +19,5 @@ class PageViewLayoutBuilder(
         return PageViewLayout(title, row, contents, slots, controls)
     }
 
-    fun toView() : ChestView {
-        return ChestView(title, 6, mutableMapOf())
-    }
 
 }
