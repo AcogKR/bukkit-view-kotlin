@@ -19,3 +19,6 @@ fun pageViewItemJust(item: ItemStack, c: ClickEvent.() -> Unit = { }): java.util
     }
 }
 
+fun simpleViewItem(item: ItemStack) : ViewItem {
+    return ViewItem(item) { _ -> ViewAction.NOTHING }
+}
