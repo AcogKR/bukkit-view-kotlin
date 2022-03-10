@@ -16,6 +16,12 @@ fun pageViewLayout(title: String, row: Int, c: PageViewLayoutBuilder.() -> Unit 
     ).apply(c).toPageViewLayout()
 }
 
+fun pageViewLayout(title: String, row: Int, slots: List<Int>, c: PageViewLayoutBuilder.() -> Unit = {}): PageViewLayout {
+    val slots = IntStream.range(0, (row - 1) * 9).boxed().collect(Collectors.toList())
+    return PageViewLayoutBuilder(
+        title, row, mutableListOf(), slots, mutableMapOf()
+    ).apply(c).toPageViewLayout()
+}
 
 fun simplePageView(title: String, row: Int, items: MutableMap<Int, ViewItem>, c: ChestView.() -> Unit = {}) : ChestView {
     return ChestView(title, row, items).apply(c)
