@@ -24,8 +24,6 @@ class PageViewControlBuilder {
 
     fun asViewControl() = PageViewControl(item, onClick)
 
-    fun asPageViewControl() : Function<PageContext, PageViewControl> {
-        return Function { asViewControl() }
-    }
+    fun asPageViewControl() : Function<PageContext, PageViewControl> = Function { asViewControl() }
 
 }

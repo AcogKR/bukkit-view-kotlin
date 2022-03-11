@@ -13,6 +13,14 @@ class ChestViewBuilder(var title: String, private val row: Int, var items: Mutab
         items[slot] = viewItem
     }
 
+    fun put(c: ViewItemBuilder.() -> Unit) {
+        items[items.size] = ViewItemBuilder().apply(c).asViewItem()
+    }
+
+    fun put(viewItem: ViewItem) {
+        items[items.size] = viewItem
+    }
+
     fun asChestView() : ChestView = ChestView(title, row, items)
 }
 

@@ -8,4 +8,4 @@ fun chestView(title: String, row: Int, c: ChestViewBuilder.() -> Unit) : ChestVi
     ChestViewBuilder(title, row, mutableMapOf()).apply(c).asChestView()
 
 fun chestView(title: String, row: Int, items: MutableMap<Int, ViewItem>, c: ChestViewBuilder.() -> Unit) : ChestView =
-    ChestViewBuilder(title, row * 9, items).apply(c).asChestView()
+    ChestViewBuilder(title, row, items).apply(c).asChestView()
