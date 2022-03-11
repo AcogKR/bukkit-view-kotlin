@@ -30,6 +30,14 @@ class BukkitPlugin : JavaPlugin() {
     }
 
     fun openPlayerList() : PageViewLayout {
+        val chestView = chestView("Players", 6) {
+            slot(3 ) {
+                item = ItemStack(Material.PLAYER_HEAD)
+                onClick = clickEvent {
+
+                }
+            }
+        }
         return pageViewLayout("Players", 6) {
             contents = Bukkit.getOnlinePlayers().map { player ->
                 pageViewItem(getPlayerHead(player)) {

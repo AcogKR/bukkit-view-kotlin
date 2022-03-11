@@ -1,4 +1,4 @@
-package cloud.acog.bukkitview.kotlin
+package cloud.acog.bukkitview.kotlin.BukkitViewBuilder
 
 import io.typecraft.bukkit.view.page.PageViewAction
 
