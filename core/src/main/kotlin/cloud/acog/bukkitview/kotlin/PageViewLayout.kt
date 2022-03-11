@@ -1,6 +1,6 @@
 package cloud.acog.bukkitview.kotlin
 
-import cloud.acog.bukkitview.kotlin.BukkitViewBuilder.PageVIewLayoutBuilder
+import cloud.acog.bukkitview.kotlin.bukkitViewBuilder.PageVIewLayoutBuilder
 import io.typecraft.bukkit.view.page.PageViewLayout
 
 fun pageViewLayout(title: String, row: Int, c: PageVIewLayoutBuilder.() -> Unit) : PageViewLayout =

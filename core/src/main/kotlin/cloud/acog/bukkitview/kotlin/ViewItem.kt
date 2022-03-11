@@ -1,6 +1,6 @@
 package cloud.acog.bukkitview.kotlin
 
-import cloud.acog.bukkitview.kotlin.BukkitViewBuilder.ViewItemBuilder
+import cloud.acog.bukkitview.kotlin.bukkitViewBuilder.ViewItemBuilder
 import io.typecraft.bukkit.view.ClickEvent
 import io.typecraft.bukkit.view.ViewAction
 import io.typecraft.bukkit.view.ViewItem

@@ -1,4 +1,4 @@
-package cloud.acog.bukkitview.kotlin.BukkitViewBuilder
+package cloud.acog.bukkitview.kotlin.bukkitViewBuilder
 
 import io.typecraft.bukkit.view.ClickEvent
 import io.typecraft.bukkit.view.page.PageContext

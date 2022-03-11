@@ -1,7 +1,7 @@
 package cloud.acog.bukkitview.kotlin
 
-import cloud.acog.bukkitview.kotlin.BukkitViewBuilder.PageViewControlBuilder
-import cloud.acog.bukkitview.kotlin.BukkitViewBuilder.PageViewControlType
+import cloud.acog.bukkitview.kotlin.bukkitViewBuilder.PageViewControlBuilder
+import cloud.acog.bukkitview.kotlin.bukkitViewBuilder.PageViewControlType
 import io.typecraft.bukkit.view.ClickEvent
 import io.typecraft.bukkit.view.page.PageContext
 import io.typecraft.bukkit.view.page.PageViewAction
