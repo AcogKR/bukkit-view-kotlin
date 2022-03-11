@@ -16,21 +16,6 @@ class ViewPlugin {
         getPageViewManager().openPage(player, 1)
     }
     
-    private fun getPageViewManager(): PageViewLayout {
-        return pageViewLayout("Page List", 6) {
-            contents = pageViewList.map { data -> 
-                pageViewItem(ItemStack(Material.AIR)) { // Click Event
-                    if (click.isLeftClick) {
-                        clicker.sendMessage("left Click")
-                        ViewAction.CLOSE
-                    } else {
-                        ViewAction.NOTHING
-                    }
-                }
-            }.toMutableList()
-        }
-    }
-    
 }
 ```
 

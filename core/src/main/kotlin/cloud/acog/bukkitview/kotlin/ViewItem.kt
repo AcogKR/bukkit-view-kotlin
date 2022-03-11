@@ -14,7 +14,7 @@ fun justViewItem(item: ItemStack) = viewItem(item) { ViewAction.NOTHING }
 
 fun pageViewItem(item: ItemStack, c: ClickEvent.() -> ViewAction) = ViewItemBuilder.ofDefault(item, c).asPageViewItem()
 
-fun justPageViewItem(item: ItemStack, c: ClickEvent.() -> ViewAction) = pageViewItem(item) { ViewAction.NOTHING }
+fun justPageViewItem(item: ItemStack) = pageViewItem(item) { ViewAction.NOTHING }
 
 fun pageContextViewItem(item: ItemStack, c: (Pair<PageContext, ClickEvent>) -> ViewAction) : Function<PageContext, ViewItem> = Function { ctx ->
     TODO() // 이거 어째 만들지...?
