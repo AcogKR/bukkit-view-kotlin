@@ -25,34 +25,25 @@ class BukkitPlugin : JavaPlugin() {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         val player = sender as Player 
-        if (player.isOp) openPlayerList().toView(1).openView(player, this)
+        if (player.isOp) {
+            pageViewLayout("Players", 6) {
+                contents = Bukkit.getOnlinePlayers().map { player ->
+                    pageViewItem(getPlayerHead(player)) {
+                        clicker.sendMessage("Hello World!")
+                        ViewAction.CLOSE
+                    }
+                }.toMutableList()
+            }.toView(1).openView(player, this)
+        }
         return false
     }
 
-    fun openPlayerList() : PageViewLayout {
-        val chestView = chestView("Players", 6) {
-            slot(3 ) {
-                item = ItemStack(Material.PLAYER_HEAD)
-                onClick = clickEvent {
-
-                }
-            }
-        }
-        return pageViewLayout("Players", 6) {
-            contents = Bukkit.getOnlinePlayers().map { player ->
-                pageViewItem(getPlayerHead(player)) {
-                    clicker.sendMessage("Hello World!")
-                    ViewAction.CLOSE
-                }
-            }.toMutableList()
-        }
-    }
 
     fun getPlayerHead(player: Player) : ItemStack {
-        val item = ItemStack(Material.PLAYER_HEAD)
-        val meta: SkullMeta = item.itemMeta as SkullMeta
-        meta.owningPlayer = player
-        item.itemMeta = meta
-        return item
+        return ItemStack(Material.PLAYER_HEAD).apply {
+            val meta: SkullMeta = itemMeta as SkullMeta
+            meta.owningPlayer = player
+            itemMeta = meta
+        }
     }
 }

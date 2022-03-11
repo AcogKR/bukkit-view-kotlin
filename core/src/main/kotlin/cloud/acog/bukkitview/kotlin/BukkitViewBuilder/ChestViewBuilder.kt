@@ -9,6 +9,10 @@ class ChestViewBuilder(var title: String, private val row: Int, var items: Mutab
         items[slot] = ViewItemBuilder().apply(c).asViewItem()
     }
 
+    fun slot(slot: Int, viewItem: ViewItem) {
+        items[slot] = viewItem
+    }
+
     fun asChestView() : ChestView = ChestView(title, row, items)
 }
 
