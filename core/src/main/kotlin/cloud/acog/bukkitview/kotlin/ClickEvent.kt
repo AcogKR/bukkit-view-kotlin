@@ -8,9 +8,8 @@ import java.util.function.Function
 fun clickEvent(c: ClickEvent.() -> ViewAction): Function<ClickEvent, ViewAction> = Function<ClickEvent, ViewAction> { c(it) }
 
 fun ViewItemBuilder.clickEvent(c: ClickEvent.() -> ViewAction) : Function<ClickEvent, ViewAction> {
-    val clickEvent = cloud.acog.bukkitview.kotlin.clickEvent { c() }
-    onClick = clickEvent
-    return clickEvent
+    onClick = cloud.acog.bukkitview.kotlin.clickEvent { c() }
+    return onClick
 }
 
 

@@ -5,23 +5,25 @@ import io.typecraft.bukkit.view.ViewItem
 
 class ChestViewBuilder(var title: String, private val row: Int, var items: MutableMap<Int, ViewItem>) {
 
-    fun slot(slot: Int, c: ViewItemBuilder.() -> Unit) {
+    fun slotItem(slot: Int, c: ViewItemBuilder.() -> Unit) {
         items[slot] = ViewItemBuilder().apply(c).asViewItem()
     }
 
-    fun slot(slot: Int, viewItem: ViewItem) {
+    fun slotItem(slot: Int, viewItem: ViewItem) {
         items[slot] = viewItem
     }
 
-    fun put(c: ViewItemBuilder.() -> Unit) {
+    fun putItem(c: ViewItemBuilder.() -> Unit) {
         items[items.size] = ViewItemBuilder().apply(c).asViewItem()
     }
 
-    fun put(viewItem: ViewItem) {
+    fun putItem(viewItem: ViewItem) {
         items[items.size] = viewItem
     }
 
     fun asChestView() : ChestView = ChestView(title, row, items)
+
+    private fun slot(x: Int = 0, y: Int = 0) = (x * y)
 }
 
 

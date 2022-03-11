@@ -19,3 +19,7 @@ fun justPageViewControl(item: ItemStack) = pageViewControl(item) { PageViewActio
 
 fun simpleViewControl(item: ItemStack, type: PageViewControlType): Function<PageContext, PageViewControl> =
     java.util.function.Function<PageContext, PageViewControl> { ctx -> viewControl(item) { type.format(ctx.page) } }
+
+//fun pageContextViewControl(item: ItemStack, c: Pair<PageContext, ClickEvent>.() -> PageViewAction) : Function<PageContext, PageViewControl> {
+//    val value = Function { ctx -> viewControl(item) { c(this) } }
+//}
