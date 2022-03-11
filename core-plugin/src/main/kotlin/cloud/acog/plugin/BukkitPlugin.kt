@@ -1,12 +1,17 @@
 package cloud.acog.plugin
 
-import cloud.acog.bukkitview.kotlin.chestView
-import cloud.acog.bukkitview.kotlin.viewItem
+import cloud.acog.bukkitview.kotlin.*
+import io.typecraft.bukkit.view.ViewAction
+import io.typecraft.bukkit.view.ViewItem
+import io.typecraft.bukkit.view.page.PageContext
+import io.typecraft.bukkit.view.page.PageViewLayout
 import org.bukkit.Material
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.java.JavaPlugin
+import java.util.function.Function
 
 class BukkitPlugin : JavaPlugin() {
     override fun onDisable() {
@@ -18,12 +23,8 @@ class BukkitPlugin : JavaPlugin() {
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
-        val chestView = chestView("플레이어 리스트", 6) {
-            title = "Tes"
-            slot(4) {
-                item
-            }
-        }
+
         return false
     }
+
 }
