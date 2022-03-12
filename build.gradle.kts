@@ -1,7 +1,3 @@
 plugins {
     base
 }
-
-allprojects {
-    
-}
