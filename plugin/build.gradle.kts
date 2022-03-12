@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    shadow(project(":core"))
+    shadow(project(":bukkit-view-kotlin-core"))
     compileOnly(spigot("1.18.1"))
     implementation(kotlin("stdlib"))
     implementation("io.typecraft:bukkit-view-core:${version}")
