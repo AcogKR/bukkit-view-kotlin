@@ -1,6 +1,5 @@
 package cloud.acog.bukkitview.kotlin.bukkitViewBuilder
 
-import cloud.acog.bukkitview.kotlin.item
 import cloud.acog.bukkitview.kotlin.simpleItem
 import cloud.acog.bukkitview.kotlin.simpleViewControl
 import io.typecraft.bukkit.view.ViewItem

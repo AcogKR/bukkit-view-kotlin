@@ -6,11 +6,17 @@ import org.bukkit.inventory.meta.ItemMeta
 
 fun Material.toItem(amount: Int) = ItemStack(this, amount)
 
+fun item(material: Material, amount: Int = 1) = material.toItem(amount)
+
 fun item(material: Material, amount: Int = 1, c: ItemStack.() -> Unit) = material.toItem(amount).apply(c)
 
 fun item(material: Material, amount: Int = 1, damage: Short, c: ItemStack.() -> Unit) = ItemStack(material, amount, damage).apply(c)
 
 fun ItemStack.meta(c: ItemMeta.() -> Unit) = setItemMeta(itemMeta?.apply(c))
+
+fun ItemStack.setDisplayName(display: String) = itemMeta?.setDisplayName(display)
+
+fun ItemStack.setLore(lore: List<String>) { itemMeta?.lore = lore }
 
 inline fun <reified T : ItemMeta> ItemStack.metaOf(configure: T.() -> Unit) {
     val meta = itemMeta

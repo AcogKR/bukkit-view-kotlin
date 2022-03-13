@@ -5,3 +5,9 @@ import io.typecraft.bukkit.view.page.PageViewLayout
 
 fun pageViewLayout(title: String, row: Int, c: PageVIewLayoutBuilder.() -> Unit) : PageViewLayout =
     PageVIewLayoutBuilder.ofDefault(title, row).apply(c).asPageViewLayout()
+
+fun pageViewLayout(title: String, row: Int, slots: List<Int>, c: PageVIewLayoutBuilder.() -> Unit) : PageViewLayout =
+    PageVIewLayoutBuilder.ofDefault(title, row).apply {
+        c(this)
+        this.slots = slots
+    }.asPageViewLayout()

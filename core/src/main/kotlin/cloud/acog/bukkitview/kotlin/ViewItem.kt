@@ -16,6 +16,7 @@ fun pageViewItem(item: ItemStack, c: ClickEvent.() -> ViewAction) = ViewItemBuil
 
 fun justPageViewItem(item: ItemStack) = pageViewItem(item) { ViewAction.NOTHING }
 
+@Deprecated("not method")
 fun pageContextViewItem(item: ItemStack, c: (Pair<PageContext, ClickEvent>) -> ViewAction) : Function<PageContext, ViewItem> = Function { ctx ->
     TODO() // 이거 어째 만들지...?
 }

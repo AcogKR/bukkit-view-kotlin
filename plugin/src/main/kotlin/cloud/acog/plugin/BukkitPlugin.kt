@@ -12,7 +12,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.meta.SkullMeta
 import org.bukkit.plugin.java.JavaPlugin
 
-class BukkitPlugin : JavaPlugin() {
+class BukkitPlugin : JavaPlugin(){
 
     override fun onEnable() {
         BukkitView.register(this)
@@ -37,11 +37,8 @@ class BukkitPlugin : JavaPlugin() {
                         setDisplayName(player.name)
                     }
                 }) {
-                    if (click.isLeftClick) {
-                        clicker.teleport(player.location)
-                    } else if (click.isRightClick) {
-                        player.kickPlayer("?")
-                    }
+                    if (click.isLeftClick) clicker.teleport(player.location)
+                    else if (click.isRightClick) player.kickPlayer("?")
                     ViewAction.CLOSE
                 }
             }.toMutableList()
