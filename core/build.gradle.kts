@@ -3,6 +3,7 @@ import kr.entree.spigradle.kotlin.spigotmc
 
 plugins {
     kotlin("jvm") version "1.6.10"
+    id("signing")
     id("maven-publish")
     id("kr.entree.spigradle.base") version "2.3.4"
 }
@@ -22,28 +23,27 @@ dependencies {
     api("io.typecraft:bukkit-view-core:${version}")
 }
 
-publishing {
-    publications {
-        create("maven", MavenPublication::class) {
-            from(components["java"])
-        }
-    }
+signing {
+    useInMemoryPgpKeys(
+        findProperty("signing.keyId")?.toString(),
+        findProperty("signing.key")?.toString(),
+        findProperty("signing.password")?.toString()
+    )
+    sign(publishing.publications)
 }
 
-/*
 publishing {
     publications {
-        create("spigradleAnnotations", MavenPublication::class) {
+        create("bukkit-view-kotlin-core", MavenPublication::class) {
             from(components["java"])
-            // NOTE: https://central.sonatype.org/publish/requirements/#sufficient-metadata
             pom {
                 name.set("${project.group}:${project.name}")
-                description.set("Annotations and processors for specify the main class.")
+                description.set("bukkit-view kotlin-dsl extension")
                 url.set("https://github.com/AcogKR/bukkit-view-kotlin")
                 licenses {
                     license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                        name.set("GNU General Public License v3.0")
+                        url.set("https://www.gnu.org/licenses/gpl-3.0.txt")
                     }
                 }
                 developers {
@@ -80,4 +80,3 @@ publishing {
         }
     }
 }
-*/
