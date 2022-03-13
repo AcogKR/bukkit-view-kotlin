@@ -9,3 +9,5 @@ fun chestView(title: String, row: Int, c: ChestViewBuilder.() -> Unit) : ChestVi
 
 fun chestView(title: String, row: Int, items: MutableMap<Int, ViewItem>, c: ChestViewBuilder.() -> Unit) : ChestView =
     ChestViewBuilder(title, row, items).apply(c).asChestView()
+
+fun slot(x: Int = 0, y: Int = 1) = (x * y)

@@ -22,8 +22,6 @@ class ChestViewBuilder(var title: String, private val row: Int, var items: Mutab
     }
 
     fun asChestView() : ChestView = ChestView(title, row, items)
-
-    private fun slot(x: Int = 0, y: Int = 1) = (x * y)
 }
 
 
