@@ -9,11 +9,10 @@ plugins {
 }
 
 group = "cloud.acog"
-version = "2.0.1"
+version = "2.0.2"
 
 repositories {
     mavenCentral()
-    mavenLocal()
     spigotmc()
 }
 
@@ -23,16 +22,10 @@ dependencies {
     api("io.typecraft:bukkit-view-core:${version}")
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
-
 publishing {
     publications {
         create("bukkit-view-kotlin-core", MavenPublication::class) {
             from(components["java"])
-
             pom {
                 name.set("${project.group}:${project.name}")
                 description.set("bukkit-view kotlin-dsl extension")
@@ -80,4 +73,9 @@ publishing {
 
 signing {
     sign(publishing.publications["bukkit-view-kotlin-core"])
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
