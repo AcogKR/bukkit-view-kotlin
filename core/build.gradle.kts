@@ -74,10 +74,5 @@ publishing {
 }
 
 signing {
-    useInMemoryPgpKeys(
-        findProperty("signing.keyId")?.toString(),
-        findProperty("signing.password")?.toString(),
-        findProperty("signing.secretKeyRingFile")?.toString()
-    )
     sign(publishing.publications["bukkit-view-kotlin-core"])
 }
