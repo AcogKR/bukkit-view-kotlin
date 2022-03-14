@@ -23,6 +23,11 @@ dependencies {
     api("io.typecraft:bukkit-view-core:${version}")
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 publishing {
     publications {
         create("bukkit-view-kotlin-core", MavenPublication::class) {
