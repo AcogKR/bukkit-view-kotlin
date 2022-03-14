@@ -5,7 +5,7 @@
 
 ## Gradle
 
-####groovy
+#### groovy
 ```groovy
 dependencies {
     compileOnly spigot('1.18')
@@ -13,7 +13,7 @@ dependencies {
 }
 ```
 
-####kotlin dsl
+#### kotlin dsl
 ```kotlin
 dependencies {
     compileOnly(spigot("1.18"))

@@ -18,24 +18,16 @@ repositories {
 }
 
 dependencies {
-    compileOnly(spigot("1.18.1"))
+    compileOnly(spigot("1.18"))
     implementation(kotlin("stdlib"))
     api("io.typecraft:bukkit-view-core:${version}")
-}
-
-signing {
-    useInMemoryPgpKeys(
-        findProperty("signing.keyId")?.toString(),
-        findProperty("signing.key")?.toString(),
-        findProperty("signing.password")?.toString()
-    )
-    sign(publishing.publications)
 }
 
 publishing {
     publications {
         create("bukkit-view-kotlin-core", MavenPublication::class) {
             from(components["java"])
+
             pom {
                 name.set("${project.group}:${project.name}")
                 description.set("bukkit-view kotlin-dsl extension")
@@ -79,4 +71,13 @@ publishing {
             }
         }
     }
+}
+
+signing {
+    useInMemoryPgpKeys(
+        findProperty("signing.keyId")?.toString(),
+        findProperty("signing.password")?.toString(),
+        findProperty("signing.secretKeyRingFile")?.toString()
+    )
+    sign(publishing.publications["bukkit-view-kotlin-core"])
 }
