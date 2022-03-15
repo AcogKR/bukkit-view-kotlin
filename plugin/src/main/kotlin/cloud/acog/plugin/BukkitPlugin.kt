@@ -18,11 +18,6 @@ class BukkitPlugin : JavaPlugin(){
         BukkitView.register(this)
     }
 
-
-    override fun onDisable() {
-        super.onDisable()
-    }
-
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         getPlayerHeadPage().toView(1).openView(sender as Player, this)
         return super.onCommand(sender, command, label, args)
