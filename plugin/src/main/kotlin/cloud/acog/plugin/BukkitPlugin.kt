@@ -9,6 +9,7 @@ import org.bukkit.Material
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -25,15 +26,15 @@ class BukkitPlugin : JavaPlugin(){
 
     private fun getPlayerHeadPage() : PageViewLayout {
         return pageViewLayout("Player Heads", 6) {
-            contents = Bukkit.getOnlinePlayers().map { player ->
-                pageViewItem(item(Material.PLAYER_HEAD, 1) {
-                    metaOf<SkullMeta> {
-                        owningPlayer = player
-                        setDisplayName(player.name)
+            contents = Bukkit.getOnlinePlayers().map { players ->
+                pageViewItem(simpleItem(Material.PLAYER_HEAD) {
+                    simpleMetaOf<SkullMeta> {
+                        owningPlayer = players
+                        setDisplayName(players.name)
                     }
                 }) {
-                    if (click.isLeftClick) clicker.teleport(player.location)
-                    else if (click.isRightClick) player.kickPlayer("?")
+                    if (click.isLeftClick) clicker.teleport(players.location)
+                    else if (click.isRightClick) players.kickPlayer("?")
                     ViewAction.CLOSE
                 }
             }.toMutableList()
