@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "cloud.acog"
-version = "2.0.2"
+version = "3.3.0"
 
 repositories {
     mavenCentral()
@@ -19,7 +19,7 @@ repositories {
 dependencies {
     compileOnly(spigot("1.18"))
     implementation(kotlin("stdlib"))
-    api("io.typecraft:bukkit-view-core:${version}")
+    api("io.typecraft:bukkit-view-core:3.3.0")
 }
 
 publishing {
