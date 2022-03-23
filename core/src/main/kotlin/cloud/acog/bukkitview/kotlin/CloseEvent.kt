@@ -9,6 +9,6 @@ import java.util.function.Function
 fun closeEvent(c: CloseEvent.() -> ViewAction): Function<CloseEvent, ViewAction> = Function<CloseEvent, ViewAction> { c(it) }
 
 fun ChestViewBuilder.closeEvent(c: CloseEvent.() -> ViewAction) : Function<CloseEvent, ViewAction> {
-    onClose = cloud.acog.bukkitview.kotlin.closeEvent { c() }
+    onClose = cloud.acog.bukkitview.kotlin.closeEvent(c)
     return onClose
 }

@@ -12,9 +12,11 @@ fun simpleItem(material: Material, amount: Int = 1, c: ItemStack.() -> Unit) = m
 
 fun ItemStack.simpleMeta(c: ItemMeta.() -> Unit) = setItemMeta(itemMeta?.apply(c))
 
-fun ItemStack.setDisplayName(display: String) = itemMeta?.setDisplayName(display)
+fun ItemMeta.setDisplayName(display: String)  {
+    setDisplayName(display)
+}
 
-fun ItemStack.setLore(lore: List<String>) { itemMeta?.lore = lore }
+fun ItemMeta.setore(lores: List<String>) { lore = lores }
 
 inline fun <reified T : ItemMeta> ItemStack.simpleMetaOf(configure: T.() -> Unit) {
     val meta = itemMeta
@@ -24,11 +26,19 @@ inline fun <reified T : ItemMeta> ItemStack.simpleMetaOf(configure: T.() -> Unit
     } else throw IllegalStateException("$type meta of item isn't ${T::class.java.simpleName}")
 }
 
-fun simpleItem(material: Material, display: String, lore: List<String>) : ItemStack {
+fun simpleItem(material: Material, display: String, lores: List<String>) : ItemStack {
     return simpleItem(material) {
         simpleMeta {
             setDisplayName(display)
-            setLore(lore)
+            lore = lores
+        }
+    }
+}
+
+fun simpleItem(material: Material, display: String) : ItemStack {
+    return simpleItem(material) {
+        simpleMeta {
+            setDisplayName(display)
         }
     }
 }

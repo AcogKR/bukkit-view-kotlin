@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly "cloud.acog:bukkit-view-kotlin-core:2.0.2"
+    compileOnly "cloud.acog:bukkit-view-kotlin-core:4.0.0"
 }
 ```
 </details>
@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("cloud.acog:bukkit-view-kotlin-core:2.0.2")
+    compileOnly("cloud.acog:bukkit-view-kotlin-core:4.0.0")
 }
 ```
 </details>
@@ -41,7 +41,7 @@ dependencies {
     <dependency>
         <groupId>cloud.acog</groupId>
         <artifactId>bukkit-view-kotlin-core</artifactId>
-        <version>2.0.2</version>
+        <version>4.0.0</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
@@ -61,61 +61,84 @@ class ViewPlugin : JavaPlugin() {
     
 }
 ```
-
-
+---
 ### ChestView
 ```kotlin
-chestView("title", 1) {
-    slotItem(slot(3, 4), item(Material.CHEST, 1) {
-        setDisplayName("Open Page2 ChestView")
-    }) {
-        //New ChestView Open
-        ViewAction.Open(chestView("page2", 2) {
-            slotItem(slot(3, 4), item(Material.CHEST, 1) {
-                setDisplayName("Close ChestView")
-            }) { ViewAction.NOTHING }
-        })
+chestView("title", 6) {
+    controlItem(slot(3, 3), ItemStack(Material.DIAMOND)) {
+        ViewAction.Open(subView)
+    }
+
+    controls[slot(3, 6)] = viewControl(ItemStack(Material.EMERALD)) {
+        ViewAction.NOTHING
     }
 }.openView(player, plugin)
 ```
-
+To open asynchronously, `ViewAction.OpenAsync(Future<View>)`:
+```kotlin
+viewControl(ItemStack(Material.EMERALD)) {
+    val myChestViewFuture: Future<ChestView>
+    ViewAction.OpenAsync(myChestViewFuture)
+}
+```
+To update just contents, `ViewAction.Update` also `ViewAction.UpdateAsync(Future<ViewContents>)`
+```kotlin
+viewControl(ItemStack(Material.IRON_INGOT)) {
+    ViewAction.Update(newContents)
+}
+```
+On close the view:
+```kotlin
+chestView("title", 6, { //ChestViewBuilder ->
+    controls[slot(2, 3)] = viewControl(ItemStack(Material.EMERALD)) {
+        ViewAction.NOTHING
+    }
+}) { // CloseEvent ->
+    ViewAction.NOTHING // or ViewAction.REOPEN
+}
+```
+or closeEvent View
+```kotlin
+chestView("title", 6) { //ChestViewBuilder ->
+    controls[slot(1, 8)] = viewControl(ItemStack(Material.EMERALD)) {
+        ViewAction.NOTHING
+    }
+    closeEvent { // CloseEvent ->
+        ViewAction.NOTHING
+    }
+}
+```
+---
 ### PageViewLayout
 ```kotlin
 pageViewLayout("title", 6) {
-    contents = Bukkit.getOnlinePlayers().map { player ->
-        pageViewItem(item(Material.PLAYER_HEAD) {
-            metaOf<SkullMeta> {
-                owningPlayer = player
-                setDisplayName(player.name)
+    elements = Material.values()
+        .filter { mat -> mat.isItem && !mat.isAir }
+        .map { material -> functionViewControl(material.toItem(1)) {
+            val player: Player = clicker
+            if (player.isOp) {
+                clicker.inventory.addItem(material.toItem(1))
             }
-        }) {
             ViewAction.NOTHING
-        }
-    }.toMutableList()
-    //If the value of the controller is null, it will be applied by default
+        }}.toMutableList()
+    
 }.toView(1).openView(player, plugin)
 ```
-PageViewLayout to ChestView 
+valuate a single page from the layout and open:
+
 ```kotlin
 val pageViewLayout : PageViewLayOut = TODO()
 pageViewLayout.toView(1).openView(player, plugin)
 ```
 
-### ViewItem
+### ViewControl
 
 Constructions:
 
-`viewItem(ItemStack, ClickEvent.() -> ViewAction>)`
-> (ItemStack, ClickEvent -> ViewAction) -> ViewItem  
+`viewControl(ItemStack, ClickEvent.() -> ViewAction>)`
 
-`justViewItem(ItemStack)`  
+> (ItemStack, ClickEvent -> ViewAction) -> ViewItem
 
-> ItemStack -> ViewItem  
+`functionViewControl(ItemStack, ClickEvent.() -> ViewAction>)`  
 
-`pageViewItem(ItemStack, ClickEvent.() -> ViewAction>)`  
-
-> (ItemStack, ClickEvent -> Unit) -> Function<PageContext, ViewItem>  
-
-`justPageViewItem(ItemStack)`  
-
-> ItemStack -> Function<PageContext, ViewItem>
+> (ItemStack, ClickEvent -> ViewAction) -> Function<PageContext, ViewControl>  

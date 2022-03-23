@@ -1,8 +1,6 @@
 package cloud.acog.bukkitview.kotlin.bukkitViewBuilder
 
-import cloud.acog.bukkitview.kotlin.controlSlot
-import cloud.acog.bukkitview.kotlin.simpleItem
-import cloud.acog.bukkitview.kotlin.simpleViewControl
+import cloud.acog.bukkitview.kotlin.*
 import io.typecraft.bukkit.view.ViewControl
 import io.typecraft.bukkit.view.page.PageContext
 import io.typecraft.bukkit.view.page.PageViewControl
@@ -35,12 +33,13 @@ class PageVIewLayoutBuilder(
     }
 
     private fun ofDefaultControls() : MutableMap<Int, Function<PageContext, PageViewControl>> {
-        val controls = mutableMapOf<Int, Function<PageContext, PageViewControl>>()
-        controls[controlSlot(3)] = simpleViewControl(
-            simpleItem(Material.STONE_BUTTON, "이전 페이지", emptyList()), PageViewControlType.PREVIOUS_ITEM
+        controls[controlSlot(3)] = simplePageViewControl(
+            simpleItem(Material.STONE_BUTTON, "이전 페이지"),
+            PageViewControlType.PREVIOUS_ITEM
         )
-        controls[controlSlot(5)] = simpleViewControl(
-            simpleItem(Material.STONE_BUTTON, "다음 페이지", emptyList()), PageViewControlType.NEXT_ITEM
+        controls[controlSlot(5)] = simplePageViewControl(
+            simpleItem(Material.STONE_BUTTON, "다음 페이지"),
+            PageViewControlType.NEXT_ITEM
         )
         return controls
     }

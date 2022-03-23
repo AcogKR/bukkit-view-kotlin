@@ -12,7 +12,6 @@ version = "4.0.0"
 
 repositories {
     mavenCentral()
-    mavenLocal()
     spigotmc()
 }
 
@@ -20,5 +19,5 @@ dependencies {
     shadow(project(":bukkit-view-kotlin-core"))
     compileOnly(spigot("1.18.1"))
     implementation(kotlin("stdlib"))
-    implementation("io.typecraft:bukkit-view-core:${version}")
+    shadow("io.typecraft:bukkit-view-core:$version")
 }

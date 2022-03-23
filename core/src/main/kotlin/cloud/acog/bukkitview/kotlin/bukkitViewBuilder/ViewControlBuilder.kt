@@ -16,13 +16,12 @@ class ViewControlBuilder {
     var onClick: Function<ClickEvent, ViewAction> = controlClickEvent()
 
     companion object {
-        fun of(itemStack: ItemStack, onClickEvent: Function<ClickEvent, ViewAction>) : ViewControlBuilder {
-            return ViewControlBuilder().apply {
+        fun of(itemStack: ItemStack, onClickEvent: Function<ClickEvent, ViewAction>) : ViewControlBuilder =
+            ViewControlBuilder().apply {
                 item = itemStack
                 onClick = onClickEvent
             }
-        }
     }
 
-    fun asViewControl() = ViewControl.of(item, onClick)
+    fun asViewControl(): ViewControl = ViewControl.of(item, onClick)
 }
