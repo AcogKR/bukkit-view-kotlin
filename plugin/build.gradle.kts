@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "cloud.acog"
-version = "2.0.4"
+version = "3.3.0"
 
 repositories {
     mavenCentral()
