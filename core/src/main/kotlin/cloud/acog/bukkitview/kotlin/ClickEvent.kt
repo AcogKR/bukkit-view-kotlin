@@ -1,15 +1,12 @@
 package cloud.acog.bukkitview.kotlin
 
-import cloud.acog.bukkitview.kotlin.bukkitViewBuilder.ViewItemBuilder
 import io.typecraft.bukkit.view.ClickEvent
 import io.typecraft.bukkit.view.ViewAction
+import io.typecraft.bukkit.view.page.PageViewAction
 import java.util.function.Function
 
-fun clickEvent(c: ClickEvent.() -> ViewAction): Function<ClickEvent, ViewAction> = Function<ClickEvent, ViewAction> { c(it) }
+fun controlClickEvent(c: ClickEvent.() -> ViewAction = { ViewAction.NOTHING }): Function<ClickEvent, ViewAction> =
+    Function<ClickEvent, ViewAction> { c(it) }
 
-fun ViewItemBuilder.clickEvent(c: ClickEvent.() -> ViewAction) : Function<ClickEvent, ViewAction> {
-    onClick = cloud.acog.bukkitview.kotlin.clickEvent { c() }
-    return onClick
-}
-
-
+fun pageControlClickEvent(c: ClickEvent.() -> PageViewAction = { PageViewAction.NOTHING }) : Function<ClickEvent, PageViewAction> =
+    Function<ClickEvent, PageViewAction> { c(it) }

@@ -11,3 +11,5 @@ fun pageViewLayout(title: String, row: Int, slots: List<Int>, c: PageVIewLayoutB
         c(this)
         this.slots = slots
     }.asPageViewLayout()
+
+fun PageVIewLayoutBuilder.controlSlot(slot: Int) = ((row - 1) * 9) + slot

@@ -1,5 +1,7 @@
 package cloud.acog.bukkitview.kotlin.bukkitViewBuilder
 
+import cloud.acog.bukkitview.kotlin.pageControlClickEvent
+import cloud.acog.bukkitview.kotlin.simpleItem
 import io.typecraft.bukkit.view.ClickEvent
 import io.typecraft.bukkit.view.page.PageContext
 import io.typecraft.bukkit.view.page.PageViewAction
@@ -10,11 +12,11 @@ import java.util.function.Function
 
 class PageViewControlBuilder {
 
-    var item: ItemStack = ItemStack(Material.AIR)
-    var onClick: Function<ClickEvent, PageViewAction> = Function { PageViewAction.NOTHING }
+    var item: ItemStack = simpleItem(Material.AIR)
+    var onClick: Function<ClickEvent, PageViewAction> = pageControlClickEvent()
 
     companion object {
-        fun ofDefault(itemStack: ItemStack, onClickEvent: Function<ClickEvent, PageViewAction>) : PageViewControlBuilder {
+        fun of(itemStack: ItemStack, onClickEvent: Function<ClickEvent, PageViewAction>) : PageViewControlBuilder {
             return PageViewControlBuilder().apply {
                 item = itemStack
                 onClick = onClickEvent
@@ -22,8 +24,8 @@ class PageViewControlBuilder {
         }
     }
 
-    fun asViewControl() = PageViewControl(item, onClick)
+    fun justPageViewControl(): PageViewControl = PageViewControl.of(item, onClick)
 
-    fun asPageViewControl() : Function<PageContext, PageViewControl> = Function { asViewControl() }
+    fun asPageViewControl() : Function<PageContext, PageViewControl> = Function { justPageViewControl() }
 
 }

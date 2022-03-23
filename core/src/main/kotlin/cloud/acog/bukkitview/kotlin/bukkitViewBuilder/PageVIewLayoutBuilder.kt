@@ -1,8 +1,9 @@
 package cloud.acog.bukkitview.kotlin.bukkitViewBuilder
 
+import cloud.acog.bukkitview.kotlin.controlSlot
 import cloud.acog.bukkitview.kotlin.simpleItem
 import cloud.acog.bukkitview.kotlin.simpleViewControl
-import io.typecraft.bukkit.view.ViewItem
+import io.typecraft.bukkit.view.ViewControl
 import io.typecraft.bukkit.view.page.PageContext
 import io.typecraft.bukkit.view.page.PageViewControl
 import io.typecraft.bukkit.view.page.PageViewLayout
@@ -10,9 +11,9 @@ import org.bukkit.Material
 import java.util.function.Function
 
 class PageVIewLayoutBuilder(
-    val title: String,
+    private val title: String,
     val row: Int,
-    var contents: MutableList<Function<PageContext, ViewItem>>,
+    var elements: MutableList<Function<PageContext, ViewControl>>,
     var slots: List<Int>,
     var controls: MutableMap<Int, Function<PageContext, PageViewControl>>
 ) {
@@ -25,13 +26,15 @@ class PageVIewLayoutBuilder(
         }
     }
 
-    fun asPageViewLayout() : PageViewLayout =
-        if (controls.isEmpty()) PageViewLayout(title, row, contents, slots, ofDefaultControls())
-        else PageViewLayout(title, row, contents, slots, controls)
+    fun asPageViewLayout() : PageViewLayout {
+        return if (controls.isEmpty())  {
+            PageViewLayout.of(title, row, elements, slots, ofDefaultControls())
+        } else {
+            PageViewLayout.of(title, row, elements, slots, controls)
+        }
+    }
 
-    fun asFirstChestView() = asPageViewLayout().toView(1)
-
-    fun ofDefaultControls() : MutableMap<Int, Function<PageContext, PageViewControl>> {
+    private fun ofDefaultControls() : MutableMap<Int, Function<PageContext, PageViewControl>> {
         val controls = mutableMapOf<Int, Function<PageContext, PageViewControl>>()
         controls[controlSlot(3)] = simpleViewControl(
             simpleItem(Material.STONE_BUTTON, "이전 페이지", emptyList()), PageViewControlType.PREVIOUS_ITEM
@@ -41,6 +44,4 @@ class PageVIewLayoutBuilder(
         )
         return controls
     }
-
-    private fun controlSlot(slot: Int) = ((row - 1) * 9) + slot
 }

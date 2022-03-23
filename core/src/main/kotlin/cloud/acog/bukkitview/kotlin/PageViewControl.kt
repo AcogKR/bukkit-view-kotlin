@@ -9,17 +9,15 @@ import io.typecraft.bukkit.view.page.PageViewControl
 import org.bukkit.inventory.ItemStack
 import java.util.function.Function
 
-fun viewControl(item: ItemStack, c: ClickEvent.() -> PageViewAction) = PageViewControlBuilder.ofDefault(item, c).asViewControl()
 
-fun justViewControl(item: ItemStack) = viewControl(item) { PageViewAction.NOTHING }
+fun justPageViewControl(item: ItemStack, c: ClickEvent.() -> PageViewAction = { PageViewAction.NOTHING}) : PageViewControl {
+    return PageViewControlBuilder.of(item, c).justPageViewControl()
+}
 
-fun pageViewControl(item: ItemStack, c: ClickEvent.() -> PageViewAction) = PageViewControlBuilder.ofDefault(item, c).asPageViewControl()
+fun pageViewControl(item: ItemStack, c: ClickEvent.() -> PageViewAction = { PageViewAction.NOTHING}) : Function<PageContext, PageViewControl> {
+    return PageViewControlBuilder.of(item, c).asPageViewControl()
+}
 
-fun justPageViewControl(item: ItemStack) = pageViewControl(item) { PageViewAction.NOTHING }
-
-fun simpleViewControl(item: ItemStack, type: PageViewControlType): Function<PageContext, PageViewControl> =
-    java.util.function.Function<PageContext, PageViewControl> { ctx -> viewControl(item) { type.format(ctx.page) } }
-
-//fun pageContextViewControl(item: ItemStack, c: Pair<PageContext, ClickEvent>.() -> PageViewAction) : Function<PageContext, PageViewControl> {
-//    val value = Function { ctx -> viewControl(item) { c(this) } }
-//}
+fun simpleViewControl(item: ItemStack, type: PageViewControlType) : Function<PageContext, PageViewControl> {
+    return Function<PageContext, PageViewControl> { ctx -> justPageViewControl(item) { type.format(ctx.page) } }
+}
