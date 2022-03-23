@@ -1,5 +1,7 @@
 package cloud.acog.bukkitview.kotlin.bukkitViewBuilder
 
+import cloud.acog.bukkitview.kotlin.justPageViewControl
+import cloud.acog.bukkitview.kotlin.viewControl
 import io.typecraft.bukkit.view.*
 import org.bukkit.inventory.ItemStack
 
@@ -14,7 +16,7 @@ class ChestViewBuilder(
 ) {
 
     companion object {
-        fun just(title: String, row: Int) : ChestViewBuilder {
+        fun of(title: String, row: Int) : ChestViewBuilder {
             return ChestViewBuilder(title, row, mutableMapOf(), mutableMapOf()) { ViewAction.NOTHING }
         }
     }
@@ -22,6 +24,11 @@ class ChestViewBuilder(
     fun asChestView() : ChestView = ChestView.of(
         title, row, ViewContents.of(controls, contents), onClose
     )
+
+    fun controlItem(slot: Int, item: ItemStack, c: ClickEvent.() -> ViewAction = { ViewAction.NOTHING }) {
+        controls[slot] = viewControl(item, c)
+    }
+
 }
 
 

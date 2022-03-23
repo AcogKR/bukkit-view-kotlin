@@ -19,7 +19,7 @@ class PageVIewLayoutBuilder(
 ) {
 
     companion object {
-        fun ofDefault(title: String, row: Int) : PageVIewLayoutBuilder {
+        fun of(title: String, row: Int) : PageVIewLayoutBuilder {
             return PageVIewLayoutBuilder(
                 title, row, mutableListOf(), (0 until (row - 1) * 9).toList(), mutableMapOf()
             )
