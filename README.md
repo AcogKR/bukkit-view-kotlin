@@ -3,6 +3,9 @@
 This is an extension of the bukkit-view-core library. [[bukkit-view]](https://github.com/typecraft-io/bukkit-view)  
 A detailed explanation is on the [wiki](https://github.com/AcogKR/bukkit-view-kotlin/wiki)
 
+
+[Example is here!](https://github.com/AcogKR/bukkit-view-kotlin/blob/master/plugin/src/main/kotlin/cloud/acog/plugin/BukkitPlugin.kt)
+
 ## Import
 
 <details>
