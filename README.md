@@ -53,7 +53,7 @@ dependencies {
 
 ---
 
-### Main Class
+## Main Class
 
 ```kotlin
 class ViewPlugin : JavaPlugin() {
@@ -65,7 +65,7 @@ class ViewPlugin : JavaPlugin() {
 }
 ```
 ---
-### ChestView
+## ChestView
 ```kotlin
 chestView("title", 6) {
     controlItem(slot(3, 3), ItemStack(Material.DIAMOND)) {
@@ -112,7 +112,7 @@ chestView("title", 6) { //ChestViewBuilder ->
 }
 ```
 ---
-### PageViewLayout
+## PageViewLayout
 ```kotlin
 pageViewLayout("title", 6) {
     elements = Material.values()
@@ -134,7 +134,7 @@ val pageViewLayout : PageViewLayOut = TODO()
 pageViewLayout.toView(1).openView(player, plugin)
 ```
 
-### ViewControl
+## ViewControl
 
 Constructions:
 
