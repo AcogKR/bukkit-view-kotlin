@@ -8,7 +8,7 @@ import io.typecraft.bukkit.view.page.PageViewLayout
 import org.bukkit.Material
 import java.util.function.Function
 
-class PageVIewLayoutBuilder(
+class PageViewLayoutBuilder(
     private val title: String,
     val row: Int,
     var elements: MutableList<Function<PageContext, ViewControl>>,
@@ -17,8 +17,8 @@ class PageVIewLayoutBuilder(
 ) {
 
     companion object {
-        fun of(title: String, row: Int) : PageVIewLayoutBuilder {
-            return PageVIewLayoutBuilder(
+        fun of(title: String, row: Int) : PageViewLayoutBuilder {
+            return PageViewLayoutBuilder(
                 title, row, mutableListOf(), (0 until (row - 1) * 9).toList(), mutableMapOf()
             )
         }
