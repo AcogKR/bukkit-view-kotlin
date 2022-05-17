@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly "cloud.acog:bukkit-view-kotlin-core:4.0.0"
+    compileOnly "cloud.acog:bukkit-view-kotlin-core:4.2.0"
 }
 ```
 </details>
@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("cloud.acog:bukkit-view-kotlin-core:4.0.0")
+    compileOnly("cloud.acog:bukkit-view-kotlin-core:4.2.0")
 }
 ```
 </details>
@@ -44,7 +44,7 @@ dependencies {
     <dependency>
         <groupId>cloud.acog</groupId>
         <artifactId>bukkit-view-kotlin-core</artifactId>
-        <version>4.0.0</version>
+        <version>4.2.0</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
