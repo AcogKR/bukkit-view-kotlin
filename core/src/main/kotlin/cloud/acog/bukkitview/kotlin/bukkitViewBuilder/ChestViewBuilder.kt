@@ -1,5 +1,6 @@
 package cloud.acog.bukkitview.kotlin.bukkitViewBuilder
 
+import cloud.acog.bukkitview.kotlin.simpleItem
 import cloud.acog.bukkitview.kotlin.toItem
 import cloud.acog.bukkitview.kotlin.viewControl
 import io.typecraft.bukkit.view.*
@@ -29,7 +30,7 @@ class ChestViewBuilder(
     /**
      * ViewControl
      */
-    fun controlItem(slot: Int, item: ItemStack, c: ClickEvent.() -> ViewAction = { ViewAction.NOTHING }) {
+    fun controlItem(slot: Int, item: ItemStack, c: ClickEvent.() -> ViewAction) {
         controls[slot] = viewControl(item, c)
     }
 
@@ -39,6 +40,16 @@ class ChestViewBuilder(
 
     fun controlItem(slot: Int, viewControl: ViewControl) {
         controls[slot] = viewControl
+    }
+
+    fun controlItem(
+        slot: Int,
+        material: Material,
+        display: String,
+        lore: List<String>,
+        c: ClickEvent.() -> ViewAction = { ViewAction.NOTHING }
+    ) {
+        controls[slot] = viewControl(simpleItem(material, display, lore), c)
     }
 
     /**
